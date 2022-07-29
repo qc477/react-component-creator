@@ -1,5 +1,5 @@
 #!/usr/bin/env python3.10
-from cmd_arguments import get_command_line_arguments
+from cmd import get_command_line_arguments
 
 
 def main():
