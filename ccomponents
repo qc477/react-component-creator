@@ -1,0 +1,11 @@
+#!/usr/bin/env python3.10
+from cmd_arguments import get_command_line_arguments
+
+
+def main():
+    cmd_args = get_command_line_arguments()
+    print(type(cmd_args))
+
+
+if __name__ == "__main__":
+    main()
