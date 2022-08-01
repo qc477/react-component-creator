@@ -1,0 +1,10 @@
+{
+    "format": "tsx",
+    "styleSheet": {
+        "format": "css",
+        "reactModule": true
+    },
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
+}
