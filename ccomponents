@@ -1,11 +1,10 @@
 #!/usr/bin/env python3.10
 from cmd import get_command_line_arguments
-from settings import get_settings
 
 
 def main():
     cmd_args = get_command_line_arguments()
-    settings_app = get_settings()
+    print(cmd_args)
 
 
 if __name__ == "__main__":
