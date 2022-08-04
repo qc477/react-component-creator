@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from types import CMDArguments
+from _types import CMDArguments
 
 
 def get_command_line_arguments() -> CMDArguments:
