@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+
 from _types import CMDArguments, StyleSheet
 
 
