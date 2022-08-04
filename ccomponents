@@ -4,7 +4,6 @@ from cmd import get_command_line_arguments
 
 def main():
     cmd_args = get_command_line_arguments()
-    print(cmd_args)
 
 
 if __name__ == "__main__":
