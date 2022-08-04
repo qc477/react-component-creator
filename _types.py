@@ -9,7 +9,6 @@ NumberOfSpaces = int
 class CMDArguments:
     names: list[NameComponent]
     extension: TypeComponent
-    is_file: bool
     is_folder: bool
     is_module: bool
     tab_width: NumberOfSpaces
