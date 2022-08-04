@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from _types import CMDArguments
+from _types import CMDArguments, StyleSheet
 
 
 def get_command_line_arguments() -> CMDArguments:
@@ -8,14 +8,16 @@ def get_command_line_arguments() -> CMDArguments:
         names=args.names,
         extension=args.extension,
         is_folder=args.folder,
-        is_module=args.module,
         tab_width=args.tab_width,
         is_semi=args.semi,
         is_single_quote=args.single_quote,
-        is_css=args.css,
-        is_scss=args.scss,
-        is_sass=args.sass,
-        is_less=args.less,
+        stylesheet=StyleSheet(
+            is_module=args.module,
+            is_css=args.css,
+            is_scss=args.scss,
+            is_sass=args.sass,
+            is_less=args.less,
+        ),
     )
 
 
