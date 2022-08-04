@@ -7,7 +7,6 @@ def get_command_line_arguments() -> CMDArguments:
     return CMDArguments(
         names=args.names,
         extension=args.extension,
-        is_file=args.file,
         is_folder=args.folder,
         is_module=args.module,
         tab_width=args.tab_width,
@@ -30,6 +29,9 @@ def _create_argument_parser():
 def _configure_arguments(parser):
     parser.add_argument("names", nargs="+", help="Name[s] of React components.")
     parser.add_argument(
+        "-f", "--folder", action="store_true", help="Make a component a folder."
+    )
+    parser.add_argument(
         "-e",
         "--extension",
         type=str,
@@ -50,14 +52,7 @@ def _configure_arguments(parser):
 
 
 def _configure_group_arguments(parser):
-    file_or_folder = parser.add_mutually_exclusive_group()
     stylesheets = parser.add_mutually_exclusive_group()
-    file_or_folder.add_argument(
-        "-f", "--file", action="store_true", help="Make a component a file."
-    )
-    file_or_folder.add_argument(
-        "-F", "--folder", action="store_true", help="Make a component a folder."
-    )
     stylesheets.add_argument("--css", action="store_true", help="Create a CSS file")
     stylesheets.add_argument("--scss", action="store_true", help="Create a SCSS file")
     stylesheets.add_argument("--sass", action="store_true", help="Create a SASS file")
