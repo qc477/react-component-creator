@@ -1,23 +1,28 @@
 from argparse import ArgumentParser
 
-from _types import CMDArguments, StyleSheet
+from _types import CMDArguments, Prettier, StyleSheet, StyleSheetTemplate
 
 
 def get_command_line_arguments() -> CMDArguments:
     args = _create_argument_parser()
+    # TODO: сортировка стилей: нужны ли они вообще, если да, то какое расширение использовать
     return CMDArguments(
         names=args.names,
-        extension=args.extension,
+        template=args.template,
         is_folder=args.folder,
-        tab_width=args.tab_width,
-        is_semi=args.semi,
-        is_single_quote=args.single_quote,
+        prettier=Prettier(
+            tab_width=args.tab_width,
+            is_semi=args.semi,
+            is_single_quote=args.single_quote,
+        ),
         stylesheet=StyleSheet(
             is_module=args.module,
-            is_css=args.css,
-            is_scss=args.scss,
-            is_sass=args.sass,
-            is_less=args.less,
+            template=StyleSheetTemplate(
+                is_css=args.css,
+                is_scss=args.scss,
+                is_sass=args.sass,
+                is_less=args.less,
+            ),
         ),
     )
 
@@ -35,8 +40,8 @@ def _configure_arguments(parser):
         "-f", "--folder", action="store_true", help="Make a component a folder."
     )
     parser.add_argument(
-        "-e",
-        "--extension",
+        "-t",
+        "--template",
         type=str,
         choices=["js", "ts", "jsx", "tsx"],
         default="jsx",
