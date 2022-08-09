@@ -1,11 +1,12 @@
 from argparse import ArgumentParser
 
-from _types import CMDArguments, Prettier, StyleSheet, StyleSheetTemplate
+from _types.cmd_arguments import CMDArguments
+from _types.prettier import Prettier
+from _types.style_sheet import StyleSheet
 
 
 def get_command_line_arguments() -> CMDArguments:
     args = _create_argument_parser()
-    # TODO: сортировка стилей: нужны ли они вообще, если да, то какое расширение использовать
     return CMDArguments(
         names=args.names,
         template=args.template,
@@ -15,22 +16,13 @@ def get_command_line_arguments() -> CMDArguments:
             is_semi=args.semi,
             is_single_quote=args.single_quote,
         ),
-        stylesheet=StyleSheet(
-            is_module=args.module,
-            template=StyleSheetTemplate(
-                is_css=args.css,
-                is_scss=args.scss,
-                is_sass=args.sass,
-                is_less=args.less,
-            ),
-        ),
+        stylesheet=StyleSheet(is_module=args.module, template=args.style),
     )
 
 
 def _create_argument_parser():
     parser = ArgumentParser(description="Bash script for creating React components.")
     _configure_arguments(parser)
-    _configure_group_arguments(parser)
     return parser.parse_args()
 
 
@@ -51,17 +43,16 @@ def _configure_arguments(parser):
         "-m", "--module", action="store_true", help="Use module stylesheets."
     )
     parser.add_argument(
-        "-t", "--tab-width", type=int, default=2, choices=[2, 4], help="Tab Width."
+        "-tw", "--tab-width", type=int, default=2, choices=[2, 4], help="Tab Width."
     )
     parser.add_argument("-s", "--semi", action="store_true", help="Use a semicolon.")
     parser.add_argument(
-        "-S", "--single-quote", action="store_true", help="Use single quotes."
+        "-sq", "--single-quote", action="store_true", help="Use single quotes."
     )
-
-
-def _configure_group_arguments(parser):
-    stylesheets = parser.add_mutually_exclusive_group()
-    stylesheets.add_argument("--css", action="store_true", help="Create a CSS file")
-    stylesheets.add_argument("--scss", action="store_true", help="Create a SCSS file")
-    stylesheets.add_argument("--sass", action="store_true", help="Create a SASS file")
-    stylesheets.add_argument("--less", action="store_true", help="Create a LESS file")
+    parser.add_argument(
+        "-st",
+        "--style",
+        type=str,
+        choices=["css", "scss", "sass", "less"],
+        help="Type stylesheet.",
+    )

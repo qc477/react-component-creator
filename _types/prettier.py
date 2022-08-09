@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from aliases import NumberOfSpaces
+from .aliases import NumberOfSpaces
+
 
 @dataclass(slots=True, frozen=True)
 class Prettier:

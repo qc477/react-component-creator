@@ -1,14 +1,8 @@
 #!/usr/bin/env python3.10
-from cmd import get_command_line_arguments
-from file_component import CreatorFileComponent
-
+from settings import settings
 
 def main():
-    cmd_args = get_command_line_arguments()
-    if cmd_args.is_folder:
-        print("folder")
-    else:
-        CreatorFileComponent(cmd_args).create()
+    _settings = settings.get()
 
 
 if __name__ == "__main__":
