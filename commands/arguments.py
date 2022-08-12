@@ -5,8 +5,10 @@ from argparse import (
     _MutuallyExclusiveGroup,
 )
 
-from _types.arguments import Arguments, Component, Prettier, StyleSheet
-from _types.stylesheet import Extensions
+from _types.arguments import Arguments
+from _types.component import Component, ReactExtensions
+from _types.prettier import Prettier
+from _types.styles import Styles, StyleExtensions
 
 _PARSER = ArgumentParser(
     prog="ccomponents", description="Console utility for creating React components."
@@ -17,15 +19,23 @@ def get_arguments() -> Arguments:
     _set_groups()
     args = _PARSER.parse_args()
     return Arguments(
-        component=Component(names=args.names, is_folder=args.folder, is_tsx=args.tsx),
+        component=Component(
+            names=args.names,
+            is_folder=args.folder,
+            file_extensions=ReactExtensions(
+                is_js=args.js, is_ts=args.ts, is_jsx=args.jsx, is_tsx=args.tsx
+            ),
+        ),
         prettier=Prettier(
             tab_width=args.tab_width,
             is_semi=args.semi,
             is_single_quote=args.single_quote,
         ),
-        stylesheet=StyleSheet(
+        styles=Styles(
             is_module=args.module,
-            extensions=Extensions(scss=args.scss, sass=args.sass, less=args.less),
+            file_extensions=StyleExtensions(
+                css=args.css, scss=args.scss, sass=args.sass, less=args.less
+            ),
         ),
     )
 
@@ -38,13 +48,19 @@ def _set_groups() -> None:
 
 def _set_react_group() -> None:
     react_group = _PARSER.add_argument_group("Settings of the React component.")
-    _set_react_arguments(react_group)
+    exclusive_react_group = react_group.add_mutually_exclusive_group()
+    _set_react_arguments(react_group, exclusive_react_group)
 
 
-def _set_react_arguments(group: _ArgumentGroup) -> None:
+def _set_react_arguments(
+    group: _ArgumentGroup, exclusive_group: _MutuallyExclusiveGroup
+) -> None:
     group.add_argument("names", nargs="+")
     group.add_argument("-f", "--folder", action="store_true")
-    group.add_argument("--tsx", action="store_true")
+    exclusive_group.add_argument("--js", action="store_true")
+    exclusive_group.add_argument("--ts", action="store_true")
+    exclusive_group.add_argument("--jsx", action="store_true")
+    exclusive_group.add_argument("--tsx", action="store_true")
 
 
 def _set_prettier_group() -> None:
@@ -68,6 +84,7 @@ def _set_stylesheet_arguments(
     group: _ArgumentGroup, exclusive_group: _MutuallyExclusiveGroup
 ) -> None:
     group.add_argument("-m", "--module", action="store_true")
+    exclusive_group.add_argument("--css", action="store_true")
     exclusive_group.add_argument("--scss", action="store_true")
     exclusive_group.add_argument("--sass", action="store_true")
     exclusive_group.add_argument("--less", action="store_true")
