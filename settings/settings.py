@@ -2,16 +2,9 @@ from _types.aliases import EmptyString, FileExtension, Quote, Semi
 from _types.arguments import Arguments
 from _types.settings import Settings, StyleSettings
 from _types.styles import Styles, StyleExtensions
-from commands.arguments import get_arguments
 
 
-def get() -> Settings:
-    args = get_arguments()
-    settings = _parse_args(args)
-    return settings
-
-
-def _parse_args(args: Arguments) -> Settings:
+def get(args: Arguments) -> Settings:
     component_extension = _get_component_extension(args.component.is_tsx)
     semi = _get_semi(args.prettier.is_semi)
     quote = _get_quote(args.prettier.is_single_quote)
