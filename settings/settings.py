@@ -5,10 +5,10 @@ from _types.styles import Styles, StyleExtensions
 from commands.arguments import get_arguments
 
 
-def get():
+def get() -> Settings:
     args = get_arguments()
     settings = _parse_args(args)
-    print(settings)
+    return settings
 
 
 def _parse_args(args: Arguments) -> Settings:
