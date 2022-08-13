@@ -6,7 +6,7 @@ from argparse import (
 )
 
 from _types.arguments import Arguments
-from _types.component import Component, ReactExtensions
+from _types.component import Component
 from _types.prettier import Prettier
 from _types.styles import Styles, StyleExtensions
 
@@ -19,13 +19,7 @@ def get_arguments() -> Arguments:
     _set_groups()
     args = _PARSER.parse_args()
     return Arguments(
-        component=Component(
-            names=args.names,
-            is_folder=args.folder,
-            file_extensions=ReactExtensions(
-                is_js=args.js, is_ts=args.ts, is_jsx=args.jsx, is_tsx=args.tsx
-            ),
-        ),
+        component=Component(names=args.names, is_folder=args.folder, is_tsx=args.tsx),
         prettier=Prettier(
             tab_width=args.tab_width,
             is_semi=args.semi,
@@ -48,19 +42,13 @@ def _set_groups() -> None:
 
 def _set_react_group() -> None:
     react_group = _PARSER.add_argument_group("Settings of the React component.")
-    exclusive_react_group = react_group.add_mutually_exclusive_group()
-    _set_react_arguments(react_group, exclusive_react_group)
+    _set_react_arguments(react_group)
 
 
-def _set_react_arguments(
-    group: _ArgumentGroup, exclusive_group: _MutuallyExclusiveGroup
-) -> None:
+def _set_react_arguments(group: _ArgumentGroup) -> None:
     group.add_argument("names", nargs="+")
     group.add_argument("-f", "--folder", action="store_true")
-    exclusive_group.add_argument("--js", action="store_true")
-    exclusive_group.add_argument("--ts", action="store_true")
-    exclusive_group.add_argument("--jsx", action="store_true")
-    exclusive_group.add_argument("--tsx", action="store_true")
+    group.add_argument("--tsx", action="store_true")
 
 
 def _set_prettier_group() -> None:
