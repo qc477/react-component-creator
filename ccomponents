@@ -1,11 +1,13 @@
 #!/usr/bin/env python3.10
 from commands.arguments import get_arguments
+from component.creator import Creator
 from settings import settings
 
 
 def main():
     args = get_arguments()
     _settings = settings.get(args)
+    Creator(_settings).start()
 
 
 if __name__ == "__main__":

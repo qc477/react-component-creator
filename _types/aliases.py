@@ -1,9 +1,11 @@
 from typing import TypeAlias
 
-NameComponent: TypeAlias = str
-NumberOfSpaces: TypeAlias = int
-FileExtension: TypeAlias = str
 EmptyString: TypeAlias = str
+NameComponent: TypeAlias = str
+FileName: TypeAlias = str
+FileExtension: TypeAlias = str
+FolderName: TypeAlias = str
+NumberOfSpaces: TypeAlias = int
 Semi: TypeAlias = str
 Quote: TypeAlias = str
 Suffix: TypeAlias = str
