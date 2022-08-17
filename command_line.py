@@ -27,7 +27,7 @@ def get_arguments() -> Arguments:
         ),
         styles=Styles(
             is_module=args.module,
-            file_extensions=StyleExtensions(
+            extensions=StyleExtensions(
                 css=args.css, scss=args.scss, sass=args.sass, less=args.less
             ),
         ),

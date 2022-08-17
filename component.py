@@ -6,8 +6,8 @@ from _types.settings import Settings
 class ComponentCreator:
     def __init__(self, settings: Settings) -> None:
         self._folder_path = Path.cwd()
-        self._names = settings.names
-        self._extension = settings.component_extension
+        self._component_names = settings.names
+        self._extension = settings.extension
         self._is_folder = settings.is_folder
         self._styles = settings.styles
 
@@ -18,26 +18,29 @@ class ComponentCreator:
             self._create_file_component()
 
     def _create_folder_component(self):
-        for name in self._names:
-            self._folder_path = Path(self._folder_path / name)
-            Path.mkdir(self._folder_path)
-            self._write(f"index.{self._extension}", name)
-            self._create_files(name)
+        index_file = f"index.{self._extension}"
+        for component_name in self._component_names:
+            self._create_folder(component_name)
+            self._write(index_file, component_name)
+            self._create_files(component_name)
+
+    def _create_folder(self, component_name):
+        folder_name = component_name
+        self._folder_path = Path(Path.cwd() / folder_name)
+        Path.mkdir(self._folder_path)
 
     def _create_file_component(self):
-        for name in self._names:
-            self._create_files(name)
+        for component_name in self._component_names:
+            self._create_files(component_name)
 
-    def _create_files(self, name):
+    def _create_files(self, component_name):
         if self._styles is not None:
-            Path.touch(
-                Path(
-                    self._folder_path
-                    / f"{name}{self._styles.suffix}.{self._styles.file_extension}"
-                )
+            name_of_styles_file = (
+                f"{component_name}{self._styles.suffix}.{self._styles.extension}"
             )
-            file = f"{name}.{self._extension}"
-            self._write(file, name)
+            Path.touch(Path(self._folder_path / name_of_styles_file))
+            file = f"{component_name}.{self._extension}"
+            self._write(file, component_name)
 
-    def _write(self, file, name_component):
+    def _write(self, file, component_name):
         pass

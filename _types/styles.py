@@ -12,4 +12,4 @@ class StyleExtensions(NamedTuple):
 @dataclass(slots=True, frozen=True)
 class Styles:
     is_module: bool
-    file_extensions: StyleExtensions
+    extensions: StyleExtensions
