@@ -1,13 +1,14 @@
 #!/usr/bin/env python3.10
-from commands.arguments import get_arguments
-from component.creator import Creator
-from settings import settings
+import component
+
+from command_line import get_arguments
+from argument_parser import parse_arguments
 
 
 def main():
     args = get_arguments()
-    _settings = settings.get(args)
-    Creator(_settings).start()
+    app_settings = parse_arguments(args)
+    component.create(app_settings)
 
 
 if __name__ == "__main__":

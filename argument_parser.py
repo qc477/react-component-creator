@@ -4,7 +4,7 @@ from _types.settings import Settings, StyleSettings
 from _types.styles import Styles, StyleExtensions
 
 
-def get(args: Arguments) -> Settings:
+def parse_arguments(args: Arguments) -> Settings:
     component_extension = _get_component_extension(args.component.is_tsx)
     semi = _get_semi(args.prettier.is_semi)
     quote = _get_quote(args.prettier.is_single_quote)
