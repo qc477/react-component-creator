@@ -21,17 +21,17 @@ class ComponentCreator:
         index_file = f"index.{self._extension}"
         for component_name in self._component_names:
             self._create_folder(component_name)
+            self._create_files(component_name)
             self._write(index_file, component_name)
+
+    def _create_file_component(self):
+        for component_name in self._component_names:
             self._create_files(component_name)
 
     def _create_folder(self, component_name):
         folder_name = component_name
         self._folder_path = Path(Path.cwd() / folder_name)
         Path.mkdir(self._folder_path)
-
-    def _create_file_component(self):
-        for component_name in self._component_names:
-            self._create_files(component_name)
 
     def _create_files(self, component_name):
         if self._styles is not None:
@@ -43,4 +43,9 @@ class ComponentCreator:
             self._write(file, component_name)
 
     def _write(self, file, component_name):
+        content = self._get_content(component_name)
+        with open(Path(self._folder_path / file), "w", encoding="utf-8") as _file:
+            _file.write(content)
+
+    def _get_content(self, component_name):
         pass
