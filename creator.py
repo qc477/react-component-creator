@@ -3,7 +3,7 @@ from pathlib import Path
 from _types.settings import Settings
 
 
-class ComponentCreator:
+class Creator:
     def __init__(self, settings: Settings) -> None:
         self._folder_path = Path.cwd()
         self._component_names = settings.names
@@ -11,7 +11,7 @@ class ComponentCreator:
         self._is_folder = settings.is_folder
         self._styles = settings.styles
 
-    def create(self):
+    def run(self):
         if self._is_folder:
             self._create_folder_component()
         else:
