@@ -7,7 +7,7 @@ from creator import Creator
 def main():
     args = get_arguments()
     app_settings = parse_arguments(args)
-    Creator(app_settings).run()
+    Creator(app_settings).create_components()
 
 
 if __name__ == "__main__":
