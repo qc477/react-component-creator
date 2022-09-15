@@ -10,3 +10,5 @@ NumberOfSpaces: TypeAlias = int
 Semi: TypeAlias = str
 Quote: TypeAlias = str
 Suffix: TypeAlias = str
+StyleImportRow: TypeAlias = str
+DeclaringFunctionalComponent: TypeAlias = str

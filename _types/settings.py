@@ -3,12 +3,12 @@ from dataclasses import dataclass
 from _types.aliases import (
     EmptyString,
     FileExtension,
-    NameComponent,
     NumberOfSpaces,
     Quote,
     Semi,
     Suffix,
 )
+from _types.component import Component
 
 
 @dataclass(slots=True, frozen=True)
@@ -19,9 +19,7 @@ class StyleSettings:
 
 @dataclass(slots=True, frozen=True)
 class Settings:
-    names: list[NameComponent]
-    is_folder: bool
-    extension: FileExtension
+    component: Component
     tab_width: NumberOfSpaces
     semi: Semi | EmptyString
     quote: Quote

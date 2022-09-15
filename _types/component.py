@@ -7,4 +7,4 @@ from .aliases import NameComponent
 class Component:
     names: list[NameComponent]
     is_folder: bool
-    is_tsx: bool
+    is_typescript: bool

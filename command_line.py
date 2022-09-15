@@ -5,13 +5,14 @@ from argparse import (
     _MutuallyExclusiveGroup,
 )
 
+from config import ProgrammConfig
 from _types.arguments import Arguments
 from _types.component import Component
 from _types.prettier import Prettier
 from _types.styles import Styles, StyleExtensions
 
 _PARSER = ArgumentParser(
-    prog="ccomponents", description="Console utility for creating React components."
+    prog=ProgrammConfig.NAME, description=ProgrammConfig.DESCRIPTION
 )
 
 
@@ -19,7 +20,9 @@ def get_arguments() -> Arguments:
     _set_groups()
     args = _PARSER.parse_args()
     return Arguments(
-        component=Component(names=args.names, is_folder=args.folder, is_tsx=args.tsx),
+        component=Component(
+            names=args.names, is_folder=args.folder, is_typescript=args.tsx
+        ),
         prettier=Prettier(
             tab_width=args.tab_width,
             is_semi=args.semi,
@@ -35,17 +38,17 @@ def get_arguments() -> Arguments:
 
 
 def _set_groups() -> None:
-    _set_react_group()
+    _set_component_group()
     _set_prettier_group()
     _set_stylesheet_group()
 
 
-def _set_react_group() -> None:
-    react_group = _PARSER.add_argument_group("Settings of the React component.")
-    _set_react_arguments(react_group)
+def _set_component_group() -> None:
+    component_group = _PARSER.add_argument_group("Settings of the React component.")
+    _set_component_arguments(component_group)
 
 
-def _set_react_arguments(group: _ArgumentGroup) -> None:
+def _set_component_arguments(group: _ArgumentGroup) -> None:
     group.add_argument("names", nargs="+")
     group.add_argument("-f", "--folder", action="store_true")
     group.add_argument("--tsx", action="store_true")
