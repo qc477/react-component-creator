@@ -41,7 +41,7 @@ class Creator:
     def _make_folder_component(self) -> None:
         for name in self._component_names:
             path_component_folder = Path(self._cwd / name)
-            Path.mkdir(path_component_folder)
+            Path.mkdir(path_component_folder)  # Хуета какая-то
             self._create_files(path=path_component_folder, name=name, is_index=True)
 
     def _make_file_component(self):
