@@ -18,7 +18,7 @@ class Creator:
         self._component_names = settings.component.names
         self._is_folder = settings.component.is_folder
         self._is_typescript = settings.component.is_typescript
-        self._tab = " " * settings.tab_width
+        self._tab = settings.tab
         self._semi = settings.semi
         self._quote = settings.quote
         self._styles = settings.styles

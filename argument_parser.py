@@ -9,9 +9,10 @@ def parse_arguments(args: Arguments) -> Settings:
     semi = _get_semi(args.prettier.is_semi)
     quote = _get_quote(args.prettier.is_single_quote)
     styles = _get_style_settings(args.styles)
+    tab = " " * args.prettier.tab_width
     return Settings(
         component=args.component,
-        tab_width=args.prettier.tab_width,
+        tab=tab,
         semi=semi,
         quote=quote,
         styles=styles,

@@ -7,6 +7,7 @@ FileExtension: TypeAlias = str
 FileContent: TypeAlias = str
 FolderName: TypeAlias = str
 NumberOfSpaces: TypeAlias = int
+Tab: TypeAlias = str
 Semi: TypeAlias = str
 Quote: TypeAlias = str
 Suffix: TypeAlias = str

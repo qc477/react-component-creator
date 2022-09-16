@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from _types.aliases import (
     EmptyString,
     FileExtension,
-    NumberOfSpaces,
+    Tab,
     Quote,
     Semi,
     Suffix,
@@ -20,7 +20,7 @@ class StyleSettings:
 @dataclass(slots=True, frozen=True)
 class Settings:
     component: Component
-    tab_width: NumberOfSpaces
+    tab: Tab
     semi: Semi | EmptyString
     quote: Quote
     styles: StyleSettings | None
