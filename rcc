@@ -1,4 +1,7 @@
 #!/usr/bin/env python3.10
+"""
+version: 1.0
+"""
 from argument_parser import parse_arguments
 from command_line import get_arguments
 from creator import Creator
