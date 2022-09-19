@@ -4,12 +4,12 @@
 ```bash
 $ rcc Component1 Component2 Component3
 ```
-![File Component](IMG_20220919_102022.jpg)
+![File Component](https://github.com/init63/ReactComponentCreator/blob/main/.github/file.jpg?raw=true)
 
 ```bash
 $ rcc -f --css Component1 Component2 Component3
 ```
-![Folder Component](IMG_20220919_102055.jpg)
+![Folder Component](https://github.com/init63/ReactComponentCreator/blob/main/.github/folder.jpg?raw=true)
 
 ## Зависимости
 Поддерживается Python версии 3.10+.
@@ -30,12 +30,12 @@ $ sudo ln -s $(pwd)/rcc /usr/local/bin/
 
 ## Параметры
 
-Параметры | Описание | По умолчанию
+Параметр | Описание | По умолчанию
 ---|---|---
  `-f`, `--folder` | Создать компонент тип "папка" | Создает компонент типа "файл"
  `--tsx` | Указывает на создание Typescript компонента: `NameComponent.tsx`| Указывает на создание стандартного React компонента `NameComponent.jsx`
  `-t`, `--tab-width` | Длинна табуляции в пробелах | `2`
- `[--semi | --no-semi]` | Использовать точку с запятой `;` в конце строки | `True`
+ `semi, --no-semi` | Использовать точку с запятой `;` в конце строки | `True`
  `-s`, `--single-quote` | Использовать одинарные кавычки `'` | `False`
  `-m`, `--module` | Создать файл для модульной изоляции стилей: `NameComponent.module.css` | файл стилей не создается
- `[--css | --scss | --sass | --less]` | Расширение файла стилей | `*.css`
+ `--css , --scss , --sass , --less` | Расширение файла стилей | `*.css`
