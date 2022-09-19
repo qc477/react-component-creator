@@ -1,5 +1,5 @@
 class ProgrammConfig:
-    NAME = "ReactComponentCreator"
+    NAME = "rcc"
     DESCRIPTION = "Console utility for creating React components."
 
 
