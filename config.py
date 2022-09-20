@@ -1,3 +1,6 @@
+EMPTY_STRING = ""
+
+
 class ProgrammConfig:
     NAME = "rcc"
     DESCRIPTION = "Console utility for creating React components."
@@ -12,6 +15,7 @@ class SettingsConfig:
 class ComponentConfig:
     TYPESCRIPTREACT_EXTENSION = "tsx"
     JAVASCRIPTREACT_EXTENSION = "jsx"
+
 
 class StyleFileConfig:
     SUFFIX = ".module"

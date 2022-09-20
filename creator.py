@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from config import ContentConfig, ComponentConfig
+from config import EMPTY_STRING, ContentConfig, ComponentConfig
 from _types.aliases import (
     DeclaringFunctionalComponent,
     EmptyString,
@@ -27,9 +27,9 @@ class Creator:
             ComponentConfig.JAVASCRIPTREACT_EXTENSION
         )
         self._declaring_functional_component: DeclaringFunctionalComponent | EmptyString = (
-            ""
+            EMPTY_STRING
         )
-        self._style_import_row: StyleImportRow | EmptyString = ""
+        self._style_import_row: StyleImportRow | EmptyString = EMPTY_STRING
         self._name_styles_file: FileName | None = None
 
     def create(self) -> None:
