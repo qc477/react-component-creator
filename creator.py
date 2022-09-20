@@ -30,7 +30,7 @@ class Creator:
             ""
         )
         self._style_import_row: StyleImportRow | EmptyString = ""
-        self._name_styles_file: FileName | EmptyString = ""
+        self._name_styles_file: FileName | None = None
 
     def create(self) -> None:
         if self._is_folder:
@@ -49,12 +49,12 @@ class Creator:
 
     def _create_folder(self, path: Path, name: NameComponent) -> None:
         Path.mkdir(path)
-
         self._create_files(path=path, name=name, is_index=True)
 
     def _create_files(self, path: Path, name: NameComponent, is_index: bool = False):
         self._write_file_component(path, name)
-        Path.touch(path / self._name_styles_file)
+        if self._name_styles_file is not None:
+            Path.touch(path / self._name_styles_file)
         if is_index:
             self._write_index_file(path, name)
 
