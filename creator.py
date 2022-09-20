@@ -12,6 +12,7 @@ from _types.aliases import (
     StyleImportRow,
 )
 from _types.settings import Settings
+from exceptions import CantCreateFolder
 
 
 class Creator:
@@ -42,7 +43,10 @@ class Creator:
     def _make_folder_component(self) -> None:
         for name in self._component_names:
             path_component_folder = Path(self._cwd / name)
-            self._create_folder(path=path_component_folder, name=name)
+            try:
+                self._create_folder(path=path_component_folder, name=name)
+            except FileExistsError:
+                raise CantCreateFolder
 
     def _make_file_component(self) -> None:
         for name in self._component_names:

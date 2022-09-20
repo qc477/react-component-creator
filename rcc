@@ -1,16 +1,21 @@
 #!/usr/bin/env python3.10
 """
-version: 1.0
+version: 1.6
 """
 from argument_parser import parse_arguments
 from command_line import get_arguments
 from creator import Creator
+from exceptions import CantCreateFolder
 
 
 def main():
     args = get_arguments()
     app_settings = parse_arguments(args)
-    Creator(app_settings).create()
+    try:
+        Creator(app_settings).create()
+    except CantCreateFolder:
+        print("Папка с таким именем уже существует")
+        exit(1)
 
 
 if __name__ == "__main__":
