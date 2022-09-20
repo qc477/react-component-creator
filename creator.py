@@ -1,5 +1,6 @@
-from pathlib import Path
+import printer
 
+from pathlib import Path
 from config import EMPTY_STRING, ContentConfig, ComponentConfig
 from _types.aliases import (
     DeclaringFunctionalComponent,
@@ -49,12 +50,14 @@ class Creator:
 
     def _create_folder(self, path: Path, name: NameComponent) -> None:
         Path.mkdir(path)
+        printer.print_info(path)
         self._create_files(path=path, name=name, is_index=True)
 
     def _create_files(self, path: Path, name: NameComponent, is_index: bool = False):
         self._write_file_component(path, name)
         if self._name_styles_file is not None:
-            Path.touch(path / self._name_styles_file)
+            path_to_styles_file = Path(path / self._name_styles_file)
+            self._create_styles_file(path=path_to_styles_file)
         if is_index:
             self._write_index_file(path, name)
 
@@ -71,6 +74,10 @@ class Creator:
             quote=self._quote,
         )
         self._write_file(filepath=path_component_file, content=component_content)
+
+    def _create_styles_file(self, path: Path) -> None:
+        Path.touch(path)
+        printer.print_info(path)
 
     def _write_index_file(self, path: Path, name: NameComponent) -> None:
         path_index_file = Path(path / f"index.{self._component_extension}")
@@ -107,3 +114,4 @@ class Creator:
     def _write_file(self, filepath: Path, content: FileContent):
         with open(filepath, "w") as file:
             file.write(content)
+        printer.print_info(filepath)
