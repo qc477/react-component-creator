@@ -18,15 +18,17 @@ $ rcc -f --css Component1 Component2 Component3
 
 ## Установка
 ### Linux
-```bash
-$ git clone https://github.com/init63/ReactComponentCreator.git && cd ReactComponentCreator
-```
+1. Скачать архив с последней версией ReactComponentCreator из раздела [релизы](https://github.com/init63/ReactComponentCreator/releases).
+2. Распаковать в удобную для Вас директорию.
+3. Сделать файл `rcc` исполняемым:
 ```bash
 $ chmod +x rcc
 ```
+4. Создать символическую ссылку на исполняемый файл `rcc` в каталог `/usr/local/bin/`:
 ```bash
 $ sudo ln -s $(pwd)/rcc /usr/local/bin/
 ```
+5. Можно приступать к работе.
 
 ## Параметры
 
